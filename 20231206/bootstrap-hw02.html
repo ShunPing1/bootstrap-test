@@ -16,14 +16,21 @@
         width: 100vw;
         height: 100vh;
        }
-       .boxContain{
 
-       }
        .boxContent-1{
-
+        width: 100%;
+        height: 20vh;
        }
-       .boxContent-2{
-
+       .img-area{
+        width: 100%;
+        height: 80vh;
+       }
+       @media (min-width: 768px) {
+        
+        .img-area{
+            width: 80%;
+            height: 60vh;
+        }
        }
 
     </style>
@@ -31,10 +38,10 @@
 
 <body>
 
-    <div class="boxWrap container-fluid bg-dark">
-        <div class="boxContain row bg-dark-subtle">
-            <div class="boxContent-1 col bg-warning-subtle"></div>
-            <div class="boxContent-2col bg-primary-subtle"></div>
+    <div class="boxWrap container-fluid p-0 bg-dark">
+        <div class="boxContent-1 col bg-warning-subtle"></div>
+        <div class="boxContent-2 bg-dark-subtle">
+            <div class="img-area col  bg-primary-subtle"></div>
         </div>
     </div>
 
