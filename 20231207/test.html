@@ -1,34 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .wrap{
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap {
             width: 100vw;
             height: 100vh;
             background-color: #ccc;
         }
-        .big{
+
+        .big {
             width: 100%;
             height: 100%;
             background-color: #aaa;
+            display: flex;
+            flex-direction: column;
         }
+
         .small-1,
-        .small-2{
+        .small-2 {
             width: 100%;
         }
-        .small-1{
+
+        .small-1 {
             height: 25%;
             background-color: #ffa;
         }
-        .small-2{
+
+        .small-2 {
             height: 75%;
             background-color: #faa;
         }
     </style>
 </head>
+
 <body>
     <div class="wrap">
         <div class="big">
@@ -36,6 +49,7 @@
             <div class="small-2"></div>
         </div>
     </div>
-    
+
 </body>
+
 </html>
