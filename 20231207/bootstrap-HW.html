@@ -15,10 +15,18 @@
             width: 100px;
             height: 100px;
         }
-        .ham-menu{
-            width:60px;
-            height:60px;
-            left: 20px;
+
+        .ham-line::before{
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -1px;
+            border-radius: 10px;
+            display: block;
+            width: 45px;
+            height: 5px;
+            background: #fff;
+            box-shadow: 0 28px #fff;
         }
 
         .col-nav,
@@ -80,8 +88,15 @@
         <div class="row w-100 h-100 m-0 flex-column flex-lg-row bg-dark-subtle">
             <nav
                 class="col-nav p-2 col-lg-3 position-relative d-flex justify-content-center align-items-center p-sm-4 justify-content-sm-between  p-lg-5 flex-lg-column justify-content-lg-start bg-danger-subtle">
-                <div class="logo d-flex justify-content-center align-items-center mb-lg-5 border rounded-3 text-light bg-black">LOGO</div>
-                <div class="ham-menu d-sm-none position-absolute border rounded-2 bg-secondary"></div>
+                <div
+                    class="logo d-flex justify-content-center align-items-center mb-lg-5 border rounded-3 text-light bg-black">
+                    LOGO</div>
+                <div class="ham-menu d-sm-none position-absolute border rounded-2 bg-black" style="width: 60px; height: 60px; left: 20px;">
+                    <div class="ham-position position-relative w-100 h-100">
+                        <div class="ham-line w-75 position-absolute top-50 start-50 border rounded-2 bg-light" style="height: 5px;transform: translate(-50%,-50%);"></div>
+                    </div>
+
+                </div>
                 <div class="menu-content row d-none d-sm-flex flex-lg-column fs-3 text-center">
                     <div class="col mb-lg-2">AAAA</div>
                     <div class="col mb-lg-2">BBBB</div>
