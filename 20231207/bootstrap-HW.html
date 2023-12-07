@@ -28,6 +28,18 @@
             background: #fff;
             box-shadow: 0 28px #fff;
         }
+        
+        .menu-content{
+            top: 150px;
+            left: -100px;
+            transition: 1s;
+            
+        }
+
+        #ham:checked ~.menu-content{
+            left: 20px;
+           
+        }
 
         .col-nav,
         .col-img {
@@ -47,6 +59,10 @@
             .col-img {
                 width: 560px;
                 height: 700px;
+            }
+
+            .menu-content{
+                position: unset !important;
             }
         }
 
@@ -77,30 +93,25 @@
 
 <body>
 
-    <!-- <div class="container-fluid vw-100 vh-100 p-0 bg-secondary-subtle">
-        <div class="row w-100 h-100 m-0 flex-column flex-lg-row bg-warning-subtle">
-            <div class="col-nav p-0 bg-danger-subtle"></div>
-            <div class="col-img p-0 flex-grow-1 flex-sm-grow-0 m-sm-auto bg-info-subtle"></div>
-        </div>
-    </div> -->
+
 
     <div class="container-fluid vw-100 vh-100 p-0 bg-secondary-subtle">
-        <div class="row w-100 h-100 m-0 flex-column flex-lg-row bg-dark-subtle">
-            <nav
-                class="col-nav p-2 col-lg-3 position-relative d-flex justify-content-center align-items-center p-sm-4 justify-content-sm-between  p-lg-5 flex-lg-column justify-content-lg-start bg-danger-subtle">
-                <div
-                    class="logo d-flex justify-content-center align-items-center mb-lg-5 border rounded-3 text-light bg-black">
-                    LOGO</div>
-                <div class="ham-menu d-sm-none position-absolute border rounded-2 bg-black" style="width: 60px; height: 60px; left: 20px;">
+        <div class="row w-100 h-100 m-0 flex-column flex-lg-row position-relative bg-dark-subtle">
+            <nav class="col-nav p-2 col-lg-3 position-relative d-flex justify-content-center align-items-center p-sm-4 justify-content-sm-between  p-lg-5 flex-lg-column justify-content-lg-start bg-danger-subtle">
+                <div class="logo d-flex justify-content-center align-items-center mb-lg-5 border rounded-3 text-light bg-black">
+                    LOGO
+                </div>
+                <input type="checkbox" name="" id="ham" class="d-none">
+                <label class="ham-menu d-sm-none position-absolute border rounded-2 bg-black" style="width: 60px; height: 60px; left: 20px;" for="ham">
                     <div class="ham-position position-relative w-100 h-100">
                         <div class="ham-line w-75 position-absolute top-50 start-50 border rounded-2 bg-light" style="height: 5px;transform: translate(-50%,-50%);"></div>
                     </div>
 
-                </div>
-                <div class="menu-content row d-none d-sm-flex flex-lg-column fs-3 text-center">
-                    <div class="col mb-lg-2">AAAA</div>
-                    <div class="col mb-lg-2">BBBB</div>
-                    <div class="col mb-lg-2">CCCC</div>
+                </label>
+                <div class="menu-content row d-flex flex-column flex-sm-row flex-lg-column position-absolute text-center text-light ">
+                    <div class="col mb-2 mb-sm-0 me-sm-2 mb-md-0 mb-lg-2 btn btn btn-dark btn-lg">AAAA</div>
+                    <div class="col mb-2 mb-sm-0 me-sm-2 mb-md-0 mb-lg-2 btn btn btn-dark btn-lg">BBBB</div>
+                    <div class="col mb-2 mb-sm-0 me-sm-2 mb-md-0 mb-lg-2 btn btn btn-dark btn-lg">CCCC</div>
                 </div>
             </nav>
             <main class="col-img p-0 flex-grow-1 flex-sm-grow-0 m-sm-auto ">
