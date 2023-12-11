@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        body {
+
+            height: 3000px;
+        }
+
+        .pesudo{
+            width: 100%;
+            height: 50vh;
+            background-color: #f2f2f2;
+            border: 2px solid #000;
+        }
+        
+        .pesudo:nth-of-type(2n + 1){
+            background-color: #faa;
+        }
+
+        .page-wrap{
+            width: 100%;
+            height: 50vh;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: #aaf;
+            clip-path: polygon(23% 10%, 76% 11%, 100% 30%, 100% 44%, 53% 100%, 53% 100%, 0 45%, 0% 30%);
+            font-size: 30px;
+            text-align: center;
+            line-height: 200px;
+            /* position: fixed; */
+            
+        }
+
+
+
+
+
+    </style>
+</head>
+
+<body>
+    <div class="pesudo pes-1"></div>
+    <div class="pesudo pes-2"></div>
+    <div class="pesudo pes-3"></div>
+    <div class="page-wrap">
+        <div class="box">LAX</div>
+    </div>
+    <div class="pesudo pes-4"></div>
+    <div class="pesudo pes-5"></div>
+
+
+    <!-- or via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/lax.js"></script>
+    <script>
+        window.onload = function () {
+            lax.init()
+
+            // Add a driver that we use to control our animations
+            lax.addDriver('scrollY', function () {
+                return window.scrollY
+            })
+
+            // Add animation bindings to elements
+            lax.addElements('.box', {
+                scrollY: {
+                    translateX: [
+                        // Y 座標
+                        ["elInY", "elCenterY", "elOutY"],
+                        // X 座標
+                        [0, 'screenWidth/2', 'screenWidth'],
+                    ],
+                    rotate: [
+                        // Y 座標
+                        ["elInY", "elCenterY", "elOutY"],
+                        // X 座標
+                        [0, 'screenWidth/2', 'screenWidth'],
+                    ],
+                },
+
+            })
+        }
+    </script>
+
+</body>
+
+</html>

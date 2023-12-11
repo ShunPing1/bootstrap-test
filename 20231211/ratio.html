@@ -16,13 +16,45 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
+        <style>
+            .box{
+                width: 300px;
+                height: 300px;
+            }
+            .box-ratio{
+                background-color: #aaf;
+                aspect-ratio: 2/1;
+            }
+        </style>
     </head>
 
     <body>
         <header>
             <!-- place navbar here -->
         </header>
-        <main></main>
+        <main>
+            <!-- css ratio -->
+            <div class="box">
+                <div class="box-ratio">
+
+                </div>
+            </div>
+            <!-- bootstrap ratio -->
+            <div class="box">
+                <div class="ratio ratio-1x1 bg-primary-subtle">
+                    <div>1x1</div>
+                </div>
+                <div class="ratio ratio-4x3 bg-danger-subtle">
+                    <div>4x3</div>
+                </div>
+                <div class="ratio ratio-16x9 bg-warning-subtle">
+                    <div>16x9</div>
+                </div>
+                <div class="ratio ratio-21x9 bg-secondary-subtle">
+                    <div>21x9</div>
+                </div>
+            </div>
+        </main>
         <footer>
             <!-- place footer here -->
         </footer>
