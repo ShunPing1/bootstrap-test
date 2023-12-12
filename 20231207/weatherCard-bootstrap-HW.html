@@ -137,7 +137,6 @@
             }).then((data) => {
 
                 resetLocArr(data);
-                // console.log('newArrTest', newLocArr);
                 //tabs 事件監聽
                 navs.forEach((nav, navIndex) => {
                     // 點擊頁籤石清空畫面
@@ -154,6 +153,7 @@
         // fn 將api資料存進newLocArr
         function resetLocArr(meterial) {
             const locAll = meterial.records.location
+            console.log(locAll);
 
             locAll.forEach((loc, locIndex) => {
                 const locationName = loc.locationName;
@@ -176,8 +176,6 @@
 
         function buildContent(index) {
             allLocArr.forEach((loc, locIndex) => {
-                const locData = newLocArr;
-                console.log(locData[loc].minTemp.time[0].parameter.parameterName);
                 // 使用判斷式判斷頁籤所屬地區
                 if (locArr[index].includes(loc)) {
                     // 生成內容
@@ -186,34 +184,18 @@
                     <div class="card-all d-flex justify-content-around flex-wrap">
                         <div class="card-content d-flex gap-5 mb-5 px-5 py-3 border-5 border-bottom rounded-top-3 border-dark-subtle  bg-light">
                             <div class="card-content-left">
-                                <h3 class="fw-bolder">今日白天</h3>
+                                <h3 class="fw-bolder">今晚明晨</h3>
                                 <p class="temperature m-0">
-                                    ${locData[loc].minTemp.time[0].parameter.parameterName}~
-                                    ${locData[loc].maxTemp.time[0].parameter.parameterName}℃</p>
-                                <p class="feel m-0">${locData[loc].feel.time[0].parameter.parameterName}</p>
+                                    ${newLocArr[loc].minTemp.time[0].parameter.parameterName}~
+                                    ${newLocArr[loc].maxTemp.time[0].parameter.parameterName}℃</p>
+                                <p class="feel m-0">${newLocArr[loc].feel.time[0].parameter.parameterName}</p>
                                 <p class="rainy">
                                     <i class="fa-solid fa-umbrella"></i>
-                                     : ${locData[loc].rain.time[0].parameter.parameterName}%
+                                     : ${newLocArr[loc].rain.time[0].parameter.parameterName}%
                                 </p>
                             </div>
                             <div class="pic ms-2 d-flex align-content-center">
-                                <img src="${changeImg(locData[loc].weather.time[0].parameter.parameterName)}" alt="${locData[loc].weather.time[0].parameter.parameterName}"  style="width: 100px; height: 100px;">
-                            </div>
-                        </div>
-
-                        <div class="card-content d-flex gap-5 mb-5 px-5 py-3 border-5 border-bottom rounded-top-3 border-dark-subtle  bg-light">
-                            <div class="card-content-left">
-                                <h3 class="fw-bolder">今晚明晨</h3>
-                                <p class="temperature m-0">
-                                    ${locData[loc].minTemp.time[1].parameter.parameterName}~
-                                    ${locData[loc].maxTemp.time[1].parameter.parameterName}℃</p>
-                                <p class="feel m-0">${locData[loc].feel.time[1].parameter.parameterName}</p>
-                                <p class="rainy">
-                                    <i class="fa-solid fa-umbrella"></i>
-                                     : ${locData[loc].rain.time[1].parameter.parameterName}%
-                                </p>                            </div>
-                            <div class="pic ms-2 d-flex align-content-center">
-                                <img src="${changeImg(locData[loc].weather.time[1].parameter.parameterName)}" alt="${locData[loc].weather.time[1].parameter.parameterName}"  style="width: 100px; height: 100px;">
+                                <img src="${changeImg(newLocArr[loc].weather.time[0].parameter.parameterName)}" alt="${newLocArr[loc].weather.time[0].parameter.parameterName}"  style="width: 100px; height: 100px;">
                             </div>
                         </div>
 
@@ -221,15 +203,31 @@
                             <div class="card-content-left">
                                 <h3 class="fw-bolder">明日白天</h3>
                                 <p class="temperature m-0">
-                                    ${locData[loc].minTemp.time[2].parameter.parameterName}~
-                                    ${locData[loc].maxTemp.time[2].parameter.parameterName}℃</p>
-                                <p class="feel m-0">${locData[loc].feel.time[2].parameter.parameterName}</p>
+                                    ${newLocArr[loc].minTemp.time[1].parameter.parameterName}~
+                                    ${newLocArr[loc].maxTemp.time[1].parameter.parameterName}℃</p>
+                                <p class="feel m-0">${newLocArr[loc].feel.time[1].parameter.parameterName}</p>
                                 <p class="rainy">
                                     <i class="fa-solid fa-umbrella"></i>
-                                     : ${locData[loc].rain.time[2].parameter.parameterName}%
+                                     : ${newLocArr[loc].rain.time[1].parameter.parameterName}%
                                 </p>                            </div>
                             <div class="pic ms-2 d-flex align-content-center">
-                                <img src="${changeImg(locData[loc].weather.time[2].parameter.parameterName)}" alt="${locData[loc].weather.time[2].parameter.parameterName}"  style="width: 100px; height: 100px;">
+                                <img src="${changeImg(newLocArr[loc].weather.time[1].parameter.parameterName)}" alt="${newLocArr[loc].weather.time[1].parameter.parameterName}"  style="width: 100px; height: 100px;">
+                            </div>
+                        </div>
+
+                        <div class="card-content d-flex gap-5 mb-5 px-5 py-3 border-5 border-bottom rounded-top-3 border-dark-subtle  bg-light">
+                            <div class="card-content-left">
+                                <h3 class="fw-bolder">明日晚上</h3>
+                                <p class="temperature m-0">
+                                    ${newLocArr[loc].minTemp.time[2].parameter.parameterName}~
+                                    ${newLocArr[loc].maxTemp.time[2].parameter.parameterName}℃</p>
+                                <p class="feel m-0">${newLocArr[loc].feel.time[2].parameter.parameterName}</p>
+                                <p class="rainy">
+                                    <i class="fa-solid fa-umbrella"></i>
+                                     : ${newLocArr[loc].rain.time[2].parameter.parameterName}%
+                                </p>                            </div>
+                            <div class="pic ms-2 d-flex align-content-center">
+                                <img src="${changeImg(newLocArr[loc].weather.time[2].parameter.parameterName)}" alt="${newLocArr[loc].weather.time[2].parameter.parameterName}"  style="width: 100px; height: 100px;">
                             </div>
                         </div>
 
