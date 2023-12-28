@@ -19,11 +19,6 @@
             width: 150px;
         }
 
-        .card-content{
-            margin-top: 100px;
-        }
-
-
         .nav-link.active {
             font-weight: bold;
             background-color: #0cf !important;
@@ -37,6 +32,12 @@
 
         .tab-pane {
             background: linear-gradient(to top, #88f, #aaf, #0cf);
+        }
+
+        @media (max-width: 992px) {
+            .nav-item {
+                width: 80px;
+            }
         }
     </style>
 
@@ -78,35 +79,21 @@
         <div class="tab-content " id="myTabContent">
             <div class="tab-pane fade show active mb-3 px-2 pt-3  border-0 rounded-bottom-4 fw-bold" id="home-tab-pane"
                 role="tabpanel" tabindex="0">
-                <div class="card-all d-flex justify-content-around flex-wrap">
-                    
-                </div>
             </div>
             <div class="tab-pane fade  px-2 pt-3  border-0 rounded-bottom-4" id="north-tab-pane" role="tabpanel"
                 tabindex="0">
-                <div class="card-all d-flex justify-content-around flex-wrap">
-                </div>
             </div>
             <div class="tab-pane fade  px-2 pt-3  border-0 rounded-bottom-4" id="center-tab-pane" role="tabpanel"
                 tabindex="0">
-                <div class="card-all d-flex justify-content-around flex-wrap">
-                    
-                </div>
             </div>
             <div class="tab-pane fade  px-2 pt-3  border-0 rounded-bottom-4" id="south-tab-pane" role="tabpanel"
                 tabindex="0">
-                <div class="card-all d-flex justify-content-around flex-wrap">
-                </div>
             </div>
             <div class="tab-pane fade  px-2 pt-3  border-0 rounded-bottom-4" id="east-tab-pane" role="tabpanel"
                 tabindex="0">
-                <div class="card-all d-flex justify-content-around flex-wrap">
-                </div>
             </div>
             <div class="tab-pane fade  px-2 pt-3  border-0 rounded-bottom-4" id="island-tab-pane" role="tabpanel"
                 tabindex="0">
-                <div class="card-all d-flex justify-content-around flex-wrap">
-                </div>
             </div>
         </div>
 
@@ -125,9 +112,6 @@
         // 宣告變數
         const navs = document.querySelectorAll('.nav-item');
         const tabContents = document.querySelectorAll('.tab-pane');
-        const cardResults = document.querySelectorAll('.card-all');
-        const locContent = document.querySelectorAll('.tab-pane h1');
-        console.log(locContent);
         // 宣告地區陣列
         const locArr = [
             [
@@ -153,12 +137,10 @@
             }).then((data) => {
 
                 resetLocArr(data);
-                // console.log('newArrTest', newLocArr);
                 //tabs 事件監聽
                 navs.forEach((nav, navIndex) => {
                     // 點擊頁籤石清空畫面
-                    cardResults[navIndex].innerHTML = '';
-                    // locContent[navIndex].innerHTML = '';
+                    tabContents[navIndex].innerHTML = '';
                     // 生成畫面
                     buildContent(navIndex);
 
@@ -171,6 +153,7 @@
         // fn 將api資料存進newLocArr
         function resetLocArr(meterial) {
             const locAll = meterial.records.location
+            console.log(locAll);
 
             locAll.forEach((loc, locIndex) => {
                 const locationName = loc.locationName;
@@ -191,43 +174,72 @@
             });
         };
 
-        // fn 生成畫面
         function buildContent(index) {
             allLocArr.forEach((loc, locIndex) => {
-                const locData = newLocArr;
                 // 使用判斷式判斷頁籤所屬地區
                 if (locArr[index].includes(loc)) {
                     // 生成內容
-                    // locContent[index].innerHTML += `${loc}`;
-                    for (let i = 0; i <= 2; i++) {
-                        const dayArr = ['今日白天','今晚明晨','明日白天'];
-                        cardResults[index].innerHTML += `
-                        <h1 class="text-center text-light fw-bold">${loc}</h1>
+                    tabContents[index].innerHTML += `
+                    <h1 class="text-center text-light fw-bold">${loc}</h1>
+                    <div class="card-all d-flex justify-content-around flex-wrap">
                         <div class="card-content d-flex gap-5 mb-5 px-5 py-3 border-5 border-bottom rounded-top-3 border-dark-subtle  bg-light">
                             <div class="card-content-left">
                                 <h3 class="fw-bolder">今晚明晨</h3>
                                 <p class="temperature m-0">
-                                    ${locData[loc].minTemp.time[i].parameter.parameterName}~
-                                    ${locData[loc].maxTemp.time[i].parameter.parameterName}℃</p>
-                                <p class="feel m-0">${locData[loc].feel.time[i].parameter.parameterName}</p>
+                                    ${newLocArr[loc].minTemp.time[0].parameter.parameterName}~
+                                    ${newLocArr[loc].maxTemp.time[0].parameter.parameterName}℃</p>
+                                <p class="feel m-0">${newLocArr[loc].feel.time[0].parameter.parameterName}</p>
                                 <p class="rainy">
                                     <i class="fa-solid fa-umbrella"></i>
-                                     : ${locData[loc].rain.time[i].parameter.parameterName}%
-                                </p>                            
+                                     : ${newLocArr[loc].rain.time[0].parameter.parameterName}%
+                                </p>
                             </div>
                             <div class="pic ms-2 d-flex align-content-center">
-                                <img src="${changeImg(locData[loc].weather.time[i].parameter.parameterName)}" alt="${locData[loc].weather.time[i].parameter.parameterName}"  style="width: 100px; height: 100px;">
+                                <img src="${changeImg(newLocArr[loc].weather.time[0].parameter.parameterName)}" alt="${newLocArr[loc].weather.time[0].parameter.parameterName}"  style="width: 100px; height: 100px;">
                             </div>
-                        </div>`;
-                    };
+                        </div>
+
+                        <div class="card-content d-flex gap-5 mb-5 px-5 py-3 border-5 border-bottom rounded-top-3 border-dark-subtle  bg-light">
+                            <div class="card-content-left">
+                                <h3 class="fw-bolder">明日白天</h3>
+                                <p class="temperature m-0">
+                                    ${newLocArr[loc].minTemp.time[1].parameter.parameterName}~
+                                    ${newLocArr[loc].maxTemp.time[1].parameter.parameterName}℃</p>
+                                <p class="feel m-0">${newLocArr[loc].feel.time[1].parameter.parameterName}</p>
+                                <p class="rainy">
+                                    <i class="fa-solid fa-umbrella"></i>
+                                     : ${newLocArr[loc].rain.time[1].parameter.parameterName}%
+                                </p>                            </div>
+                            <div class="pic ms-2 d-flex align-content-center">
+                                <img src="${changeImg(newLocArr[loc].weather.time[1].parameter.parameterName)}" alt="${newLocArr[loc].weather.time[1].parameter.parameterName}"  style="width: 100px; height: 100px;">
+                            </div>
+                        </div>
+
+                        <div class="card-content d-flex gap-5 mb-5 px-5 py-3 border-5 border-bottom rounded-top-3 border-dark-subtle  bg-light">
+                            <div class="card-content-left">
+                                <h3 class="fw-bolder">明日晚上</h3>
+                                <p class="temperature m-0">
+                                    ${newLocArr[loc].minTemp.time[2].parameter.parameterName}~
+                                    ${newLocArr[loc].maxTemp.time[2].parameter.parameterName}℃</p>
+                                <p class="feel m-0">${newLocArr[loc].feel.time[2].parameter.parameterName}</p>
+                                <p class="rainy">
+                                    <i class="fa-solid fa-umbrella"></i>
+                                     : ${newLocArr[loc].rain.time[2].parameter.parameterName}%
+                                </p>                            </div>
+                            <div class="pic ms-2 d-flex align-content-center">
+                                <img src="${changeImg(newLocArr[loc].weather.time[2].parameter.parameterName)}" alt="${newLocArr[loc].weather.time[2].parameter.parameterName}"  style="width: 100px; height: 100px;">
+                            </div>
+                        </div>
+
+                    </div>
+                    `;
 
                 };
             });
         };
-       
 
 
-
+        console.log('-----------------');
         // fn 換圖片
         function changeImg(string) {
             let change;

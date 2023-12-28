@@ -10,12 +10,21 @@
             height: 100px;
             background-color: #faa;
             margin-bottom: 10px;
+            position: relative;
 
+        }
+        .box::after{
+            /* 將DOM元素設定dataset的值使用在content上 */
+            content: attr(data-content);
+            width: 200px;
+            /* background-color: #aaa; */
+            position: absolute;
+            left: 120px;
         }
     </style>
 </head>
 <body>
-    <div class="box"></div>
+    <div class="box" data-content="data122"></div>
     <div class="box"></div>
     <div class="box"></div>
 
@@ -25,16 +34,13 @@
         const boxArr = ['box-1','box-2','box3'];
         
         let i;
-        boxes[addContent(i)].innerHTML = `${boxArr[addContent(i)]}`;
+        // boxes[addContent(i)].innerHTML = `${boxArr[addContent(i)]}`;
+
+        boxes[0].dataset.content = '使用JS更改資料';
 
 
 
-        function addContent(params) {    
-            for (params = 0; params <= 2; params++) {
-                return params;
-                
-            }
-        }
+
 
     </script>
 </body>
